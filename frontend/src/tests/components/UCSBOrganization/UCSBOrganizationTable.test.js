@@ -30,7 +30,7 @@ describe("UserTable tests", () => {
           </QueryClientProvider>
         );
             
-        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Inactive"];
+        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
         const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inacitve"];
         const testId = "UCSBOrganizationTable";
 
@@ -59,7 +59,7 @@ describe("UserTable tests", () => {
 
         );
 
-        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Inactive"];
+        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
         const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inacitve"];
         const testId = "UCSBOrganizationTable";
 
@@ -97,7 +97,7 @@ describe("UserTable tests", () => {
     
         );
     
-        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Inactive"];
+        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
         const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inacitve"];
         const testId = "UCSBOrganizationTable";
     

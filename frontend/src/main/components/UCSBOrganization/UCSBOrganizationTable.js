@@ -27,16 +27,16 @@ export default function UCSBOrganizationTable({organizations,currentUser}){
 
     const columns = [
         {
-            Header: 'orgCode',
+            Header: 'OrgCode',
             accessor: 'orgCode', // accessor is the "key" in the data
         },
 
         {
-            Header: 'orgTranslationShort',
+            Header: 'OrgTranslationShort',
             accessor: 'orgTranslationShort',
         },
         {
-            Header: 'orgTranslation',
+            Header: 'OrgTranslation',
             accessor: 'orgTranslation',
         },
         {
@@ -54,6 +54,6 @@ export default function UCSBOrganizationTable({organizations,currentUser}){
     return <OurTable
         data={organizations}
         columns={columns}
-        testid={"OrganizationTable"}
+        testid={"UCSBOrganizationTable"}
     />;
 };
