@@ -87,7 +87,7 @@ describe("UCSBOrganizationForm tests", () => {
         const submitButton = screen.getByText(/Create/);
         fireEvent.click(submitButton);
 
-        await screen.findByText(/OrgTranslationShort is required/);
+        await screen.getByText(/OrgTranslationShort is required/);
         expect(screen.getByText(/OrgTranslation is required/)).toBeInTheDocument();
 
         const orgTranslationShortInput = screen.getByTestId(`${testId}-orgTranslationShort`);
