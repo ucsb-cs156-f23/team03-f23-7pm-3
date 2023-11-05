@@ -57,3 +57,4 @@ export default function UCSBOrganizationTable({organizations,currentUser}){
         testid={"UCSBOrganizationTable"}
     />;
 };
+
