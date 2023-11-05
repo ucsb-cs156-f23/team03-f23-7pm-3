@@ -1,4 +1,4 @@
-const ucsbMenuItemReviewFixtures = {
+const menuItemReviewFixtures = {
     oneMenuItemReview: {
       "id": 1,
       "itemId": 40,
@@ -36,4 +36,4 @@ const ucsbMenuItemReviewFixtures = {
 };
 
 
-export { ucsbMenuItemReviewFixtures };
+export { menuItemReviewFixtures };
