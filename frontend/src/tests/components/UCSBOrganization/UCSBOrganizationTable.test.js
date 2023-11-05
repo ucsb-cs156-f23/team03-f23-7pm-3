@@ -111,8 +111,8 @@ describe("UserTable tests", () => {
           expect(header).toBeInTheDocument();
         });
     
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("ZPR");
-        expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("SKY");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("ZPR");
+        expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent("SKY");
     
         const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
         expect(editButton).toBeInTheDocument();
@@ -137,7 +137,7 @@ describe("UserTable tests", () => {
     
         );
     
-        await waitFor(() => { expect(screen.getByTestId(`UCSBOrganizationTable-cell-row-0-col-id`)).toHaveTextContent("ZPR"); });
+        await waitFor(() => { expect(screen.getByTestId(`UCSBOrganizationTable-cell-row-0-col-orgCode`)).toHaveTextContent("ZPR"); });
     
         const editButton = screen.getByTestId(`UCSBOrganizationTable-cell-row-0-col-Edit-button`);
         expect(editButton).toBeInTheDocument();
