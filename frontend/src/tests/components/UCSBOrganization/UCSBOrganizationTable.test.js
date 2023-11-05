@@ -31,7 +31,7 @@ describe("UserTable tests", () => {
         );
             
         const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
-        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inacitve"];
+        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
         const testId = "UCSBOrganizationTable";
 
         // assert
@@ -60,7 +60,7 @@ describe("UserTable tests", () => {
         );
 
         const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
-        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inacitve"];
+        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
         const testId = "UCSBOrganizationTable";
 
         expectedHeaders.forEach((headerText) => {
@@ -98,7 +98,7 @@ describe("UserTable tests", () => {
         );
     
         const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
-        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inacitve"];
+        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
         const testId = "UCSBOrganizationTable";
     
         expectedHeaders.forEach((headerText) => {
