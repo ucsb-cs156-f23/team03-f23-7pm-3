@@ -41,7 +41,7 @@ describe("UCSBOrganizationForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <UCSBOrganizationForm initialContents={UCSBOrganizationFixtures.oneOrganization} />
+                    <UCSBOrganizationForm initialContents={ucsbOrganizationFixtures.oneOrganization} />
                 </Router>
             </QueryClientProvider>
         );
@@ -98,9 +98,9 @@ describe("UCSBOrganizationForm tests", () => {
             expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
         
         });
-        
-        expect(inactiveCheckbox).toBeInTheDocument();
+
         const inactiveCheckbox = screen.getByTestId(`${testId}-inactive`);
+        expect(inactiveCheckbox).toBeInTheDocument();
         fireEvent.click(inactiveCheckbox);
 
     });
