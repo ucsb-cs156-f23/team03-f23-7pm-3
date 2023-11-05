@@ -1,10 +1,7 @@
-import { fireEvent, render, waitFor, screen } from "@testing-library/react";
+import { render, waitFor, fireEvent, screen } from "@testing-library/react";
+import UCSBOrganizationForm from "main/components/UCSBOrganization/UCSBOrganizationForm";
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
-import UCSBOrganizationTable from "main/components/UCSBOrganization/UCSBOrganizationTable";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { MemoryRouter } from "react-router-dom";
-import { currentUserFixtures } from "fixtures/currentUserFixtures";
-
+import { BrowserRouter as Router } from "react-router-dom";
 
 const mockedNavigate = jest.fn();
 
@@ -13,165 +10,125 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("UserTable tests", () => {
-    const queryClient = new QueryClient();
 
-    test("renders empty table correctly", () => {
-    
-        // arrange
-        const currentUser = currentUserFixtures.adminUser;
-    
-        // act
+describe("UCSBOrganizationForm tests", () => {
+
+    test("renders correctly", async () => {
+
         render(
-          <QueryClientProvider client={queryClient}>
-            <MemoryRouter>
-              <UCSBOrganizationTable organizations={[]} currentUser={currentUser} />
-            </MemoryRouter>
-          </QueryClientProvider>
+            <Router  >
+                <UCSBOrganizationForm />
+            </Router>
         );
-            
-        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
-        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
-        const testId = "UCSBOrganizationTable";
-
-        // assert
-        expectedHeaders.forEach((headerText) => {
-          const header = screen.getByText(headerText);
-          expect(header).toBeInTheDocument();
-        });
-    
-        expectedFields.forEach((field) => {
-          const fieldElement = screen.queryByTestId(`${testId}-cell-row-0-col-${field}`);
-          expect(fieldElement).not.toBeInTheDocument();
-        });
+        await screen.findByText(/orgCode/);
+        await screen.findByText(/Create/);
     });
 
-    test("Has the expected column headers and content for ordinary user", () => {
 
-        const currentUser = currentUserFixtures.userOnly;
+    test("renders correctly when passing in a UCSBOrganization", async () => {
 
         render(
-            <QueryClientProvider client={queryClient}>
-            <MemoryRouter>
-                <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} />
-            </MemoryRouter>
-            </QueryClientProvider>
-
+            <Router  >
+                <UCSBOrganizationForm initialContents={ucsbOrganizationFixtures.oneOrganization} />
+            </Router>
         );
-
-        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
-        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
-        const testId = "UCSBOrganizationTable";
-
-        expectedHeaders.forEach((headerText) => {
-            const header = screen.getByText(headerText);
-            expect(header).toBeInTheDocument();
-        });
-
-        expectedFields.forEach((field) => {
-            const header = screen.getByTestId(`${testId}-cell-row-0-col-${field}`);
-            expect(header).toBeInTheDocument();
-        });
-
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("ZPR");
-        expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent("SKY");
-
-        const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
-        expect(editButton).not.toBeInTheDocument();
-
-        const deleteButton = screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`);
-        expect(deleteButton).not.toBeInTheDocument();
-
-    });
-
-    test("Has the expected colum headers and content for adminUser", () => {
-
-        const currentUser = currentUserFixtures.adminUser;
-    
-        render(
-          <QueryClientProvider client={queryClient}>
-            <MemoryRouter>
-              <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} />
-            </MemoryRouter>
-          </QueryClientProvider>
-    
-        );
-    
-        const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Is inactive?"];
-        const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
-        const testId = "UCSBOrganizationTable";
-    
-        expectedHeaders.forEach((headerText) => {
-          const header = screen.getByText(headerText);
-          expect(header).toBeInTheDocument();
-        });
-    
-        expectedFields.forEach((field) => {
-          const header = screen.getByTestId(`${testId}-cell-row-0-col-${field}`);
-          expect(header).toBeInTheDocument();
-        });
-    
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("ZPR");
-        expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent("SKY");
-    
-        const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
-        expect(editButton).toBeInTheDocument();
-        expect(editButton).toHaveClass("btn-primary");
-    
-        const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
-        expect(deleteButton).toBeInTheDocument();
-        expect(deleteButton).toHaveClass("btn-danger");
-    
-    });
-
-    test("Edit button navigates to the edit page for admin user", async () => {
-
-        const currentUser = currentUserFixtures.adminUser;
-    
-        render(
-          <QueryClientProvider client={queryClient}>
-            <MemoryRouter>
-              <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} />
-            </MemoryRouter>
-          </QueryClientProvider>
-    
-        );
-    
-        await waitFor(() => { expect(screen.getByTestId(`UCSBOrganizationTable-cell-row-0-col-orgCode`)).toHaveTextContent("ZPR"); });
-    
-        const editButton = screen.getByTestId(`UCSBOrganizationTable-cell-row-0-col-Edit-button`);
-        expect(editButton).toBeInTheDocument();
+        await screen.findByTestId(/UCSBOrganizationForm-orgCode/);
+        expect(screen.getByText(/orgCode/)).toBeInTheDocument();
         
-        fireEvent.click(editButton);
-    
-        await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/organizations/edit/ZPR'));
-    
+        const orgCodeInput = screen.getByTestId(/UCSBOrganizationForm-orgCode/);
+        const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
+
+        fireEvent.change(orgCodeInput, { target: { value: "ZPR" } });
+        fireEvent.click(submitButton);
+        expect(screen.getByTestId(/UCSBOrganizationForm-orgCode/)).toHaveValue("ZPR");
     });
 
-    test("Delete button calls delete callback", async () => {
-        // arrange
-        const currentUser = currentUserFixtures.adminUser;
-    
-        // act - render the component
-        render(
-          <QueryClientProvider client={queryClient}>
-            <MemoryRouter>
-              <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} />
-            </MemoryRouter>
-          </QueryClientProvider>
-        );
 
-        const testId = "UCSBOrganizationTable";
+
     
-        // assert - check that the expected content is rendered
-        expect(await screen.findByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("ZPR");
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`)).toHaveTextContent("ZETA PHI RHO");
+    test("Correct Error messsages on bad input", async () => {
+
+        render(
+            <Router  >
+                <UCSBOrganizationForm />
+            </Router>
+        );
+        await screen.findByTestId("UCSBOrganizationForm-inactive");
+        const inactive = screen.getByTestId("UCSBOrganizationForm-inactive");
+        const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
+
+        fireEvent.change(inactive, { target: { value: 'bad-input' } });
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/The input should be just true or false/);
+    });
     
-        const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
-        expect(deleteButton).toBeInTheDocument();
-    
-        // act - click the delete button
-        fireEvent.click(deleteButton);
+    test("Correct Error messsages on missing input", async () => {
+
+        render(
+            <Router  >
+                <UCSBOrganizationForm />
+            </Router>
+        );
+        await screen.findByTestId("UCSBOrganizationForm-submit");
+        const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
+
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/orgCode is required./);
+        expect(screen.getByText(/orgTranslationShort is required./)).toBeInTheDocument();
+        expect(screen.getByText(/orgTranslation is required./)).toBeInTheDocument();
+        expect(screen.getByText(/inactive is required./)).toBeInTheDocument();
+
+    });
+
+    test("No Error messsages on good input", async () => {
+
+        const mockSubmitAction = jest.fn();
+
+
+        render(
+            <Router  >
+                <UCSBOrganizationForm submitAction={mockSubmitAction} />
+            </Router>
+        );
+        await screen.findByTestId("UCSBOrganizationForm-orgCode");
+        const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
+        const orgTranslationShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
+        const orgTranslationField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
+        const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
+        const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
+
+        fireEvent.change(orgCodeField, { target: { value: 'ZPR' } });
+        fireEvent.change(orgTranslationShortField, { target: { value: 'ZETA PHI RHO' } });
+        fireEvent.change(orgTranslationField, { target: { value: 'ZETA PHI RHO' } });
+        fireEvent.change(inactiveField, { target: { value: false } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+
+        expect(screen.queryByText(/orgCode is required/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/orgTranslationShort is required/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/orgTranslation is required/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/inactive is required/)).not.toBeInTheDocument();
+
+    });
+
+
+    test("that navigate(-1) is called when Cancel is clicked", async () => {
+
+        render(
+            <Router  >
+                <UCSBOrganizationForm />
+            </Router>
+        );
+        await screen.findByTestId("UCSBOrganizationForm-cancel");
+        const cancelButton = screen.getByTestId("UCSBOrganizationForm-cancel");
+
+        fireEvent.click(cancelButton);
+
+        await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
+
     });
 
 });
