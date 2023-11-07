@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewForm";
+import MenuItemReviewForm from "main/components/MenuItemReviews/MenuItemReviewForm";
 import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -47,13 +47,15 @@ describe("MenuItemReviewForm tests", () => {
         );
         await screen.findByTestId("MenuItemReviewForm-dateReviewed");
 
-        const dateReviewed = screen.getByTestId("MenuItemReviewForm-dateReviewed");
+        const stars = screen.getByTestId("MenuItemReviewForm-stars");
+
         const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
 
-        fireEvent.change(localDateTimeField, { target: { value: 'bad-input' } });
+        fireEvent.change(stars, { target: { value: 'bad-input' } });
+
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Date Reviewed is required. /);
+        await screen.findByText("Stars should be 1-5.");
     });
 
     test("Correct Error messsages on missing input", async () => {
@@ -68,9 +70,9 @@ describe("MenuItemReviewForm tests", () => {
 
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Date Reviewed is required. /);
-        expect(screen.getByText(/Item ID is required. /)).toBeInTheDocument();
-        expect(screen.getByText(/Number of stars is required. /)).toBeInTheDocument();
+        await screen.findByText(/Item ID is required./);
+        expect(screen.getByText(/Date Reviewed should be ISO./)).toBeInTheDocument();
+        expect(screen.getByText(/Stars should be 1-5./)).toBeInTheDocument();
         expect(screen.getByText(/Reviewer Email are required./)).toBeInTheDocument();
         expect(screen.getByText(/Comments are required./)).toBeInTheDocument();
 
@@ -86,7 +88,7 @@ describe("MenuItemReviewForm tests", () => {
                 <MenuItemReviewForm submitAction={mockSubmitAction} />
             </Router>
         );
-        await screen.findByTestId("MenuItemReviewForm-quarterYYYYQ");
+        await screen.findByTestId("MenuItemReviewForm-itemId");
 
         const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
         const reviewerEmailField = screen.getByTestId("MenuItemReviewForm-reviewerEmail");

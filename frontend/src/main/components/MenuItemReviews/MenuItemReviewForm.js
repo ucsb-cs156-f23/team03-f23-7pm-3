@@ -22,6 +22,8 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
     // Stryker disable next-line Regex
     const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
 
+    const stars_regex = /[1-5]/;
+
     return (
 
         <Form onSubmit={handleSubmit(submitAction)}>
@@ -51,12 +53,12 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                         <Form.Control
                             data-testid="MenuItemReviewForm-itemId"
                             id="itemId"
-                            type="number"
+                            type="text"
                             isInvalid={Boolean(errors.itemId)}
                             {...register("itemId", { required: true })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.itemId && 'Item ID is required. '}
+                            {errors.itemId && 'Item ID is required.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -71,22 +73,22 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                             {...register("dateReviewed", { required: true, pattern: isodate_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.dateReviewed && 'Date Reviewed is required. '}
+                            {errors.dateReviewed && 'Date Reviewed should be ISO.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="stars">Date (iso format)</Form.Label>
+                        <Form.Label htmlFor="stars">Stars (1-5)</Form.Label>
                         <Form.Control
                             data-testid="MenuItemReviewForm-stars"
                             id="stars"
-                            type="number"
+                            type="text"
                             isInvalid={Boolean(errors.stars)}
-                            {...register("stars", { required: true })}
+                            {...register("stars", { required: true, pattern: stars_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.stars && 'Number of stars is required. '}
+                            {errors.stars && 'Stars should be 1-5.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -95,7 +97,7 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
             <Row>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="reviewerEmail">Name</Form.Label>
+                        <Form.Label htmlFor="reviewerEmail">Reviewer Email</Form.Label>
                         <Form.Control
                             data-testid="MenuItemReviewForm-reviewerEmail"
                             id="reviewerEmail"
@@ -106,7 +108,7 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.name?.message}
+                            {errors.reviewerEmail?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -115,7 +117,7 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
             <Row>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="comments">Name</Form.Label>
+                        <Form.Label htmlFor="comments">Comments</Form.Label>
                         <Form.Control
                             data-testid="MenuItemReviewForm-comments"
                             id="comments"
@@ -126,7 +128,7 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.name?.message}
+                            {errors.comments?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -136,14 +138,14 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                 <Col>
                     <Button
                         type="submit"
-                        data-testid="UCSBDateForm-submit"
+                        data-testid="MenuItemReviewForm-submit"
                     >
                         {buttonLabel}
                     </Button>
                     <Button
                         variant="Secondary"
                         onClick={() => navigate(-1)}
-                        data-testid="UCSBDateForm-cancel"
+                        data-testid="MenuItemReviewForm-cancel"
                     >
                         Cancel
                     </Button>
