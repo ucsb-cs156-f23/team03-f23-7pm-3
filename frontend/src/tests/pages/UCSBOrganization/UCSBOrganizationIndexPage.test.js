@@ -147,7 +147,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
         fireEvent.click(deleteButton);
 
         // assert
-       // await waitFor(() => { expect(mockToast).toBeCalledWith("UCSBOrganization with orgCode ZPR was deleted") });
+        await waitFor(() => { expect(mockToast).toBeCalledWith("UCSBOrganization with orgCode ZPR was deleted") });
 
     });
 
