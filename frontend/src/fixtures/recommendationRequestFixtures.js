@@ -1,26 +1,22 @@
 const recommendationRequestFixtures = {
-    oneRecommendation:
-    [
-      {
+    oneRecommendation: {
        "id": 1,
         "requesterEmail": "cgaucho@ucsb.edu",
         "professorEmail": "phtcon@ucsb.edu",
         "explanation": "BS/MS program",
-        "dateRequested": "2022-04-20T00:00:00Z",
-        "dateNeeded": "2022-05-01T00:00:00Z",
+        "dateRequested": "2022-04-20T00:00:00",
+        "dateNeeded": "2022-05-01T00:00:00",
         "done": false
-      }
-    ],
+      },
 
-    threeRestaurants:
-    [
+    threeRecommendations: [
         {
             "id": 1,
             "requesterEmail": "cgaucho@ucsb.edu",
             "professorEmail": "phtcon@ucsb.edu",
             "explanation": "BS/MS program",
-            "dateRequested": "2022-04-20T00:00:00Z",
-            "dateNeeded": "2022-05-01T00:00:00Z",
+            "dateRequested": "2022-04-20T00:00:00",
+            "dateNeeded": "2022-05-01T00:00:00",
             "done": false
         },
 
@@ -29,8 +25,8 @@ const recommendationRequestFixtures = {
             "requesterEmail": "ldelplaya@ucsb.edu",
             "professorEmail": "richert@ucsb.edu",
             "explanation": "PhD CS Stanford",
-            "dateRequested": "2022-05-20T00:00:00Z",
-            "dateNeeded": "2022-11-15T00:00:00Z",
+            "dateRequested": "2022-05-20T00:00:00",
+            "dateNeeded": "2022-11-15T00:00:00",
             "done": false
         },
 
@@ -39,11 +35,11 @@ const recommendationRequestFixtures = {
             "requesterEmail": "ldelplaya@ucsb.edu",
             "professorEmail": "phtcon@ucsb.edu",
             "explanation": "PhD CS Stanford",
-            "dateRequested": "2022-05-20T00:00:00Z",
-            "dateNeeded": "2022-11-15T00:00:00Z",
+            "dateRequested": "2022-05-20T00:00:00",
+            "dateNeeded": "2022-11-15T00:00:00",
             "done": false
         }        
     ]
 };
 
-export { restaurantFixtures };
+export { recommendationRequestFixtures };
