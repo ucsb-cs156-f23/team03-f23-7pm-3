@@ -26,25 +26,17 @@ export default function MenuItemReviewTable({ menuitemreviews, currentUser }) {
     // Stryker disable next-line all : TODO try to make a good test for this
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
 
-
-    // private long id;
-    // private long itemId;
-    // private String reviewerEmail;
-    // private int stars;
-    // private LocalDateTime dateReviewed;
-    // private String comments;
-  
     const columns = [
         {
             Header: 'id',
             accessor: 'id', // accessor is the "key" in the data
         },
         {
-            Header: 'Item Id',
+            Header: 'ItemId',
             accessor: 'itemId',
         },
         {
-            Header: 'Reviewer Email',
+            Header: 'ReviewerEmail',
             accessor: 'reviewerEmail',
         },
         {
@@ -52,7 +44,7 @@ export default function MenuItemReviewTable({ menuitemreviews, currentUser }) {
             accessor: 'stars',
         },
         {
-            Header: 'Date Reviewed',
+            Header: 'DateReviewed',
             accessor: 'dateReviewed',
         },
         {
