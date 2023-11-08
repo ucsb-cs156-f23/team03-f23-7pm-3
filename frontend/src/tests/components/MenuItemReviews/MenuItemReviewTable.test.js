@@ -1,5 +1,5 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
-import { ucsbDatesFixtures } from "fixtures/ucsbDatesFixtures";
+import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 import MenuItemReviewTable from "main/components/MenuItemReview/MenuItemReviewTable"
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
@@ -23,7 +23,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewTable dates={menuItemReviewFixtures.threeMenuItemReviews} currentUser={currentUser} />
+          <MenuItemReviewTable menuitemreviews={menuItemReviewFixtures.threeMenuItemReviews} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -61,7 +61,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewTable dates={menuItemReviewFixtures.threeDates} currentUser={currentUser} />
+          <MenuItemReviewTable menuitemreviews={menuItemReviewFixtures.threeMenuItemReviews} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -101,7 +101,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewTable dates={menuItemReviewFixtures.threeDates} currentUser={currentUser} />
+          <MenuItemReviewTable menuitemreviews={menuItemReviewFixtures.threeMenuItemReviews} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
