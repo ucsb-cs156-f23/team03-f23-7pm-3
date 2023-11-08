@@ -72,8 +72,8 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                             {...register("name", {
                                 required: "Name is required.",
                                 maxLength : {
-                                    value: 30,
-                                    message: "Max length 30 characters"
+                                    value: 40,
+                                    message: "Max length 40 characters"
                                 }
                             })}
                         />
@@ -95,7 +95,11 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                             type="text"
                             isInvalid={Boolean(errors.station)}
                             {...register("station", {
-                                required: "Station is required."
+                                required: "Station is required.",
+                                maxLength : {
+                                    value: 50,
+                                    message: "Max length 50 characters"
+                                }
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
