@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/UCSBOrganization/UCSBOrganizationForm.js</title>
+    <title>Code coverage report for components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/UCSBOrganization</a> UCSBOrganizationForm.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/UCSBDiningCommonsMenuItem</a> UCSBDiningCommonsMenuItemForm.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -197,11 +197,7 @@
 <a name='L132'></a><a href='#L132'>132</a>
 <a name='L133'></a><a href='#L133'>133</a>
 <a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,23 +208,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -339,11 +330,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Button, Form, Row, Col } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 &nbsp;
-function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Create" }) {
+function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 &nbsp;
     // Stryker disable all
     const {
@@ -357,74 +349,69 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
 &nbsp;
     const navigate = useNavigate();
 &nbsp;
-    // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
-    // Note that even this complex regex may still need some tweaks
-&nbsp;
-    // Stryker disable next-line Regex
-    const inactive_regex = /(true|false)/i;
-&nbsp;
-    // Stryker disable next-line all
-    //const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
+    const testIdPrefix = "UCSBDiningCommonsMenuItemForm";
 &nbsp;
     return (
 &nbsp;
         &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
 &nbsp;
-&nbsp;
             &lt;Row&gt;
-            
-                &lt;Col&gt;
-                    &lt;Form.Group className="mb-3" &gt;
-                        &lt;Form.Label htmlFor="orgCode"&gt;orgCode&lt;/Form.Label&gt;
-                        &lt;Form.Control
-                            data-testid="UCSBOrganizationForm-orgCode"
-                            id="orgCode"
-                            type="text"
-                            isInvalid={Boolean(errors.orgTranslationShort)}
-                            {...register("orgCode",{
-                                required: "orgCode is required."
-                            })}
-                            //value={initialContents.orgCode}
-                            
-                        /&gt;
-                        &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.orgCode &amp;&amp; 'orgCode is required. '}
-                        &lt;/Form.Control.Feedback&gt;
-                    &lt;/Form.Group&gt;
-                &lt;/Col&gt;
-                
+&nbsp;
+                {initialContents &amp;&amp; (
+                    &lt;Col&gt;
+                        &lt;Form.Group className="mb-3" &gt;
+                            &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
+                            &lt;Form.Control
+                                data-testid={testIdPrefix + "-id"}
+                                id="id"
+                                type="text"
+                                {...register("id")}
+                                value={initialContents.id}
+                                disabled
+                            /&gt;
+                        &lt;/Form.Group&gt;
+                    &lt;/Col&gt;
+                )}
 &nbsp;
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
-                        &lt;Form.Label htmlFor="orgTranslationShort"&gt;orgTranslationShort&lt;/Form.Label&gt;
+                        &lt;Form.Label htmlFor="diningCommonsCode"&gt;diningCommonsCode&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="UCSBOrganizationForm-orgTranslationShort"
-                            id="orgTranslationShort"
+                            data-testid={testIdPrefix + "-diningCommonsCode"}
+                            id="diningCommonsCode"
                             type="text"
-                            isInvalid={Boolean(errors.orgTranslationShort)}
-                            {...register("orgTranslationShort", {
-                                required: "orgTranslationShort is required."
+                            isInvalid={Boolean(errors.diningCommonsCode)}
+                            {...register("diningCommonsCode", {
+                                required: "Dining commons code is required.",
+                                maxLength : {
+                                    value: 30,
+                                    message: "Max length 30 characters"
+                                }
                             })}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.orgTranslationShort &amp;&amp; 'orgTranslationShort is required. '}
+                            {errors.diningCommonsCode?.message}
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
-                        &lt;Form.Label htmlFor="orgTranslation"&gt;orgTranslation&lt;/Form.Label&gt;
+                        &lt;Form.Label htmlFor="name"&gt;Name&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="UCSBOrganizationForm-orgTranslation"
-                            id="orgTranslation"
+                            data-testid={testIdPrefix + "-name"}
+                            id="name"
                             type="text"
-                            isInvalid={Boolean(errors.orgTranslation)}
-                            {...register("orgTranslation", {
-                                required: "orgTranslation is required."
+                            isInvalid={Boolean(errors.name)}
+                            {...register("name", {
+                                required: "Name is required.",
+                                maxLength : {
+                                    value: 40,
+                                    message: "Max length 40 characters"
+                                }
                             })}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.orgTranslation &amp;&amp; 'orgTranslation is required. '}
+                            {errors.name?.message}
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
@@ -433,23 +420,23 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
             &lt;Row&gt;
 &nbsp;
                 &lt;Col&gt;
-&nbsp;
-&nbsp;
-&nbsp;
                     &lt;Form.Group className="mb-3" &gt;
-                        &lt;Form.Label htmlFor="inactive"&gt;inactive&lt;/Form.Label&gt;
+                        &lt;Form.Label htmlFor="station"&gt;Station&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="UCSBOrganizationForm-inactive"
-                            id="inactive"
+                            data-testid={testIdPrefix + "-station"}
+                            id="station"
                             type="text"
-                            isInvalid={Boolean(errors.inactive)}
-                            {...register("inactive", {
-                                required: "inactive is required.",pattern: inactive_regex
+                            isInvalid={Boolean(errors.station)}
+                            {...register("station", {
+                                required: "Station is required.",
+                                maxLength : {
+                                    value: 50,
+                                    message: "Max length 50 characters"
+                                }
                             })}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.inactive?.message &amp;&amp; 'inactive is required. '}
-                            {'The input should be just true or false'}
+                            {errors.station?.message}
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
@@ -459,14 +446,14 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                 &lt;Col&gt;
                     &lt;Button
                         type="submit"
-                        data-testid="UCSBOrganizationForm-submit"
+                        data-testid={testIdPrefix + "-submit"}
                     &gt;
                         {buttonLabel}
                     &lt;/Button&gt;
                     &lt;Button
                         variant="Secondary"
                         onClick={() =&gt; navigate(-1)}
-                        data-testid="UCSBOrganizationForm-cancel"
+                        data-testid={testIdPrefix + "-cancel"}
                     &gt;
                         Cancel
                     &lt;/Button&gt;
@@ -477,7 +464,8 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
     )
 }
 &nbsp;
-export default UCSBOrganizationForm;</pre></td></tr></table></pre>
+export default UCSBDiningCommonsMenuItemForm;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
