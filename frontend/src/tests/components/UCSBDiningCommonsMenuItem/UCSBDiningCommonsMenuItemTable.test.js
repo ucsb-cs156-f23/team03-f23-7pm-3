@@ -118,5 +118,28 @@ describe("UserTable tests", () => {
 
   });
 
+  test("Delete button calls delete callback", async () => {
+    // arrange
+    const currentUser = currentUserFixtures.adminUser;
+
+    // act - render the component
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBDiningCommonsMenuItemTable menuItems={ucsbDiningCommonsMenuItemFixtures.threeMenuItems} currentUser={currentUser} />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+
+    // assert - check that the expected content is rendered
+    expect(await screen.findByTestId(`UCSBDiningCommonsMenuItemTable-cell-row-0-col-id`)).toHaveTextContent("2");
+
+    const deleteButton = screen.getByTestId(`UCSBDiningCommonsMenuItemTable-cell-row-0-col-Delete-button`);
+    expect(deleteButton).toBeInTheDocument();
+
+    // act - click the delete button
+    fireEvent.click(deleteButton);
+  });
+
 });
 
