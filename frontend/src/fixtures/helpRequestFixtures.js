@@ -1,5 +1,5 @@
 const helpRequestFixtures = {
-    oneDate: {
+    oneHelpRequest: {
         "id": 1,
         "requestEmail": "cgaucho@ucsb.edu",
         "teamID": "f23-7pm-3",
@@ -8,7 +8,7 @@ const helpRequestFixtures = {
         "explanatation": "Need support running Dokku",
         "solved": "false",
     },
-    threeDates: [
+    threeHelpRequests: [
         {
             "id": 1,
             "requestEmail": "cgaucho@ucsb.edu",
