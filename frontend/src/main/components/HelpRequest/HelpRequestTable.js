@@ -2,16 +2,16 @@ import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
 import { useBackendMutation } from "main/utils/useBackend";
-import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/HelprequestUtils"
+import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/HelpRequestUtils"
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function HelpRequestTable({ helpRequest, currentUser }) {
+export default function HelpRequestTable({ helpRequests, currentUser }) {
 
     const navigate = useNavigate();
 
     const editCallback = (cell) => {
-        navigate(`/helpRequest/edit/${cell.row.values.id}`)
+        navigate(`/helprequest/edit/${cell.row.values.id}`)
     }
 
     // Stryker disable all : hard to test for query caching
@@ -19,7 +19,7 @@ export default function HelpRequestTable({ helpRequest, currentUser }) {
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/helpRequest/all"]
+        ["/api/helprequest/all"]
     );
     // Stryker restore all 
 
@@ -64,7 +64,7 @@ export default function HelpRequestTable({ helpRequest, currentUser }) {
     } 
 
     return <OurTable
-        data={helpRequest}
+        data={helpRequests}
         columns={columns}
         testid={"HelpRequestTable"}
     />;
