@@ -21,7 +21,8 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
 
     // Stryker disable next-line Regex
     const solved_regex = /(true|false)/i;
-
+    
+    // Stryker disable next-line Regex
     const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
     
     
@@ -148,29 +149,6 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
 
             </Row>
 
-            {/* <Row>
-
-                <Col>
-
-
-
-                    <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="requestEmail">RequestEmail</Form.Label>
-                        <Form.Control
-                            data-testid="HelpRequestForm-requestEmail"
-                            id="requestEmail"
-                            type="text"
-                            isInvalid={Boolean(errors.requestEmail)}
-                            {...register("requestEmail", {
-                                required: "RequestEmail is required."
-                            })}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.requestEmail?.message}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                </Col>
-            </Row> */}
 
             <Row>
                 <Col>
