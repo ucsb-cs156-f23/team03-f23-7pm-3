@@ -125,30 +125,6 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                 </Col>
             </Row>
 
-            {/* <Row>
-
-                <Col>
-
-
-
-                    <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="title">Title</Form.Label>
-                        <Form.Control
-                            data-testid="ArticlesForm-title"
-                            id="title"
-                            type="text"
-                            isInvalid={Boolean(errors.title)}
-                            {...register("title", {
-                                required: "Title is required. "
-                            })}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.title?.message}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                </Col>
-            </Row> */}
-
             <Row>
                 <Col>
                     <Button
