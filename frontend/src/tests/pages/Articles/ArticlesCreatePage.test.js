@@ -107,8 +107,6 @@ describe("ArticlesCreatePage tests", () => {
         expect(mockToast).toBeCalledWith("New article Created - id: 17 title: UCSB Home Page");
         expect(mockNavigate).toBeCalledWith({ "to": "/articles" });
     });
-
-
 });
 
 

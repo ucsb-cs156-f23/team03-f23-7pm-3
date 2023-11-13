@@ -29,7 +29,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Tag(name = "MenuItemReviews")
-@RequestMapping("/api/menuitemreview")
+@RequestMapping("/api/menuitemreviews")
 @RestController
 @Slf4j
 public class MenuItemReviewsController extends ApiController {

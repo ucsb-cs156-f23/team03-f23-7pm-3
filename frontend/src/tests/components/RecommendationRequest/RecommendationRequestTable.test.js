@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
-import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
-import UCSBDiningCommonsMenuItemTable from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemTable"
+import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
+import RecommendationRequestTable from "main/components/RecommendationRequest/RecommendationRequestTable"
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
@@ -23,15 +23,15 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDiningCommonsMenuItemTable menuItems={ucsbDiningCommonsMenuItemFixtures.threeMenuItems} currentUser={currentUser} />
+          <RecommendationRequestTable recommendationRequests={recommendationRequestFixtures.threeRecommendations} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
     );
 
-    const expectedHeaders = ["id", "DiningCommonsCode", "Name", "Station"];
-    const expectedFields = ["id", "diningCommonsCode", "name", "station"];
-    const testId = "UCSBDiningCommonsMenuItemTable";
+    const expectedHeaders = ["id", "Requester Email", "Professor Email", "Explanation", "Date Requested", "Date Needed", "Done"];
+    const expectedFields = ["id", "requesterEmail", "professorEmail", "explanation", "dateRequested", "dateNeeded", "done"];
+    const testId = "RecommendationRequestTable";
 
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
@@ -43,8 +43,8 @@ describe("UserTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
 
     const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).not.toBeInTheDocument();
@@ -54,22 +54,23 @@ describe("UserTable tests", () => {
 
   });
 
-  test("Has the expected column headers and content for adminUser", () => {
+  test("Has the expected colum headers and content for adminUser", () => {
 
     const currentUser = currentUserFixtures.adminUser;
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDiningCommonsMenuItemTable menuItems={ucsbDiningCommonsMenuItemFixtures.threeMenuItems} currentUser={currentUser} />
+          <RecommendationRequestTable recommendationRequests={recommendationRequestFixtures.threeRecommendations} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
     );
 
-    const expectedHeaders = ["id", "DiningCommonsCode", "Name", "Station"];
-    const expectedFields = ["id", "diningCommonsCode", "name", "station"];
-    const testId = "UCSBDiningCommonsMenuItemTable";
+
+    const expectedHeaders = ["id", "Requester Email", "Professor Email", "Explanation", "Date Requested", "Date Needed", "Done"];
+    const expectedFields = ["id", "requesterEmail", "professorEmail", "explanation", "dateRequested", "dateNeeded", "done"];
+    const testId = "RecommendationRequestTable";
 
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
@@ -81,8 +82,8 @@ describe("UserTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
@@ -99,22 +100,22 @@ describe("UserTable tests", () => {
     const currentUser = currentUserFixtures.adminUser;
 
     render(
-        <QueryClientProvider client={queryClient}>
-          <MemoryRouter>
-            <UCSBDiningCommonsMenuItemTable menuItems={ucsbDiningCommonsMenuItemFixtures.threeMenuItems} currentUser={currentUser} />
-          </MemoryRouter>
-        </QueryClientProvider>
-  
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <RecommendationRequestTable recommendationRequests={recommendationRequestFixtures.threeRecommendations} currentUser={currentUser} />
+        </MemoryRouter>
+      </QueryClientProvider>
+
     );
 
-    await waitFor(() => { expect(screen.getByTestId(`UCSBDiningCommonsMenuItemTable-cell-row-0-col-id`)).toHaveTextContent("2"); });
+    await waitFor(() => { expect(screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
 
-    const editButton = screen.getByTestId(`UCSBDiningCommonsMenuItemTable-cell-row-0-col-Edit-button`);
+    const editButton = screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
     
     fireEvent.click(editButton);
 
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ucsbdiningcommonsmenuitem/edit/2'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/recommendationrequest/edit/1'));
 
   });
 
@@ -126,20 +127,21 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDiningCommonsMenuItemTable menuItems={ucsbDiningCommonsMenuItemFixtures.threeMenuItems} currentUser={currentUser} />
+          <RecommendationRequestTable recommendationRequests={recommendationRequestFixtures.threeRecommendations} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
 
     // assert - check that the expected content is rendered
-    expect(await screen.findByTestId(`UCSBDiningCommonsMenuItemTable-cell-row-0-col-id`)).toHaveTextContent("2");
+    await waitFor(() => { expect(screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
 
-    const deleteButton = screen.getByTestId(`UCSBDiningCommonsMenuItemTable-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
 
     // act - click the delete button
     fireEvent.click(deleteButton);
   });
+
 
 });
 
