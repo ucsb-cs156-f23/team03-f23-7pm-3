@@ -108,5 +108,3 @@ describe("ArticlesCreatePage tests", () => {
         expect(mockNavigate).toBeCalledWith({ "to": "/articles" });
     });
 });
-
-
