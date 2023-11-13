@@ -3,7 +3,6 @@ import RecommendationRequestTable from "main/components/RecommendationRequest/Re
 import { recommendationRequestFixtures } from 'fixtures/recommendationRequestFixtures';
 import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
-import RecommendationRequestTable from 'main/components/RecommendationRequest/RecommendationRequestTable';
 
 export default {
     title: 'components/RecommendationRequest/RecommendationRequestTable',
