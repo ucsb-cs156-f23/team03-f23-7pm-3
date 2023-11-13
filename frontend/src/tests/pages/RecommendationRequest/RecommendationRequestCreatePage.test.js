@@ -110,8 +110,8 @@ describe("RecommendationRequestCreatePage tests", () => {
                 "done": "false"
         });
 
-        expect(mockToast).toBeCalledWith("New ucsbDate Created - id: 17 name: Groundhog Day");
-        expect(mockNavigate).toBeCalledWith({ "to": "/ucsbdates" });
+        expect(mockToast).toBeCalledWith("New recommendationRequest Created - id: 1 requester email: adyah@ucsb.edu");
+        expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequest" });
     });
 
 
