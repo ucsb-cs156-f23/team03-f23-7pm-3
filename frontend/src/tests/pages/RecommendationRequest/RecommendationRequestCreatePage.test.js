@@ -86,11 +86,11 @@ describe("RecommendationRequestCreatePage tests", () => {
 
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-        fireEvent.change(requesterEmail, { target: { value: 'adyah@ucsb.edu' } });
-        fireEvent.change(professorEmail, { target: { value: 'prof@ucsb.edu' } });
-        fireEvent.change(explanation, { target: { value: 'Need recommendation' } });
-        fireEvent.change(dateRequested, { target: { value: '2024-02-02T00:00' } });
-        fireEvent.change(dateNeeded, { target: { value: '2024-05-15T00:00' } });
+        fireEvent.change(requesterEmail, { target: { value: 'cgaucho@ucsb.edu' } });
+        fireEvent.change(professorEmail, { target: { value: 'phtcon@ucsb.edu' } });
+        fireEvent.change(explanation, { target: { value: 'BS/MS program' } });
+        fireEvent.change(dateRequested, { target: { value: '2022-02-02T00:00' } });
+        fireEvent.change(dateNeeded, { target: { value: '2022-05-02T00:00' } });
         fireEvent.change(done, { target: { value: 'false' } });
 
 
@@ -102,15 +102,15 @@ describe("RecommendationRequestCreatePage tests", () => {
 
         expect(axiosMock.history.post[0].params).toEqual(
             {
-                "requesterEmail": "adyah@ucsb.edu",
-                "professorEmail": "prof@ucsb.edu",
-                "explanation": "Need recommendation",
-                "dateRequested": "2024-02-02T00:00",
-                "dateNeeded": "2024-05-15T00:00",
+                "requesterEmail": "cgaucho@ucsb.edu",
+                "professorEmail": "phtcon@ucsb.edu",
+                "explanation": "BS/MS program",
+                "dateRequested": "2022-02-02T00:00",
+                "dateNeeded": "2022-05-02T00:00",
                 "done": "false"
         });
 
-        expect(mockToast).toBeCalledWith("New recommendationRequest Created - id: 1 requester email: adyah@ucsb.edu");
+        expect(mockToast).toBeCalledWith("New recommendationRequest Created - id: 1 requester email: cgaucho@ucsb.edu");
         expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequest" });
     });
 
