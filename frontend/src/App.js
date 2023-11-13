@@ -115,6 +115,7 @@ function App() {
             <>
               <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
            </>
+          )
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
