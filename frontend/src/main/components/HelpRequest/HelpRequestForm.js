@@ -149,29 +149,6 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
 
             </Row>
 
-            {/* <Row>
-
-                <Col>
-
-
-
-                    <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="requestEmail">RequestEmail</Form.Label>
-                        <Form.Control
-                            data-testid="HelpRequestForm-requestEmail"
-                            id="requestEmail"
-                            type="text"
-                            isInvalid={Boolean(errors.requestEmail)}
-                            {...register("requestEmail", {
-                                required: "RequestEmail is required."
-                            })}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.requestEmail?.message}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                </Col>
-            </Row> */}
 
             <Row>
                 <Col>
