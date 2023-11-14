@@ -114,4 +114,3 @@ describe("HelpRequestCreatePage tests", () => {
 
 
 });
-
