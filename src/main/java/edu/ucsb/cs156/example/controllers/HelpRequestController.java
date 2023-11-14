@@ -49,7 +49,7 @@ public class HelpRequestController extends ApiController {
     @PostMapping("/post")
     public HelpRequest postHelpRequest(
             @Parameter(name="requestEmail") @RequestParam String requestEmail,
-            @Parameter(name="teamID") @RequestParam String teamID,
+            @Parameter(name="teamId") @RequestParam String teamId,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
             @Parameter(name="requestTime", description="in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
             @Parameter(name="explanation") @RequestParam String explanation,
@@ -64,7 +64,7 @@ public class HelpRequestController extends ApiController {
 
         HelpRequest helpRequest = new HelpRequest();
         helpRequest.setRequestEmail(requestEmail);
-        helpRequest.setTeamId(teamID);
+        helpRequest.setTeamId(teamId);
         helpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
         helpRequest.setRequestTime(requestTime);
         helpRequest.setExplanation(explanation);
