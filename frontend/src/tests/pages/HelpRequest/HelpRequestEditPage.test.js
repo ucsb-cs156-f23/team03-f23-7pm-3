@@ -84,7 +84,7 @@ describe("HelpRequestEditPage tests", () => {
                 solved: "false"
             });
             axiosMock.onPut('/api/helprequest').reply(200, {
-                id: "17",
+                id: 17,
                 requestEmail: "cgaucho1@ucsb.edu",
                 teamId: "f23-5pm-2",
                 tableOrBreakoutRoom: "12",
