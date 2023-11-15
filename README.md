@@ -5,11 +5,6 @@ Instructions: <https://ucsb-cs156.github.io/f23/lab/team03.html>
 Link to Production Deployment: https://team03.dokku-11.cs.ucsb.edu/
 Link to QA: https://team03-qa.dokku-11.cs.ucsb.edu/
 
-Deployments:
-
-* Prod: <https://team03.dokku-17.cs.ucsb.edu>
-* QA: <https://team03-qa.dokku-17.cs.ucsb.edu>
-
 | Table                       | Team Member     | Github Id    |
 |-----------------------------|-----------------|--------------|
 | `UCSBDiningCommonsMenuItem` | Kevin Ren       | ThatsBadJuju |
