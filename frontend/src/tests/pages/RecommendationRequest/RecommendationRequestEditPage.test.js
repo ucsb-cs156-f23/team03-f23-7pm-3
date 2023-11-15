@@ -179,7 +179,7 @@ describe("RecommendationRequestEditPage tests", () => {
 
             await waitFor(() => expect(mockToast).toBeCalled());
             expect(mockToast).toBeCalledWith("Recommendation request updated - id: 17");
-            expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequests" });
+            expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequest" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
