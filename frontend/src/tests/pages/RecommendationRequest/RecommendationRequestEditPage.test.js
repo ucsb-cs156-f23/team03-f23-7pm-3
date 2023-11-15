@@ -44,7 +44,7 @@ describe("RecommendationRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/recommendationrequests", { params: { id: 17 } }).timeout();
+            axiosMock.onGet("/api/recommendationrequest", { params: { id: 17 } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -74,7 +74,7 @@ describe("RecommendationRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/recommendationrequests", { params: { id: 17 } }).reply(200, {
+            axiosMock.onGet("/api/recommendationrequest", { params: { id: 17 } }).reply(200, {
                 id: 17,
                 requesterEmail: "abc@ucsb.edu",
                 professorEmail: "def@ucsb.edu",
@@ -83,7 +83,7 @@ describe("RecommendationRequestEditPage tests", () => {
                 dateNeeded: "2023-01-01T12:00",
                 done: true
             });
-            axiosMock.onPut('/api/recommendationrequests').reply(200, {
+            axiosMock.onPut('/api/recommendationrequest').reply(200, {
                 id: "17",
                 requesterEmail: "abc@ucsb.edu",
                 professorEmail: "def@ucsb.edu",
