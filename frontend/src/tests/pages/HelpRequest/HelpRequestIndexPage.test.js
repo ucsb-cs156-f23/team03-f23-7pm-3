@@ -1,12 +1,12 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
 
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { articlesFixtures } from "fixtures/articlesFixtures";
+import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import mockConsole from "jest-mock-console";
@@ -22,12 +22,12 @@ jest.mock('react-toastify', () => {
     };
 });
 
-describe("ArticlesIndexPage tests", () => {
+describe("HelpRequestIndexPage tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
 
-    const testId = "ArticlesTable";
-  
+    const testId = "HelpRequestTable";
+
     const setupUserOnly = () => {
         axiosMock.reset();
         axiosMock.resetHistory();
@@ -46,38 +46,38 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/articles/all").reply(200, []);
+        axiosMock.onGet("/api/helprequest/all").reply(200, []);
 
         // act
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <ArticlesIndexPage />
+                    <HelpRequestIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
 
         // assert
         await waitFor( ()=>{
-            expect(screen.getByText(/Create Article/)).toBeInTheDocument();
+            expect(screen.getByText(/Create HelpRequest/)).toBeInTheDocument();
         });
-        const button = screen.getByText(/Create Article/);
-        expect(button).toHaveAttribute("href", "/articles/create");
+        const button = screen.getByText(/Create HelpRequest/);
+        expect(button).toHaveAttribute("href", "/helprequest/create");
         expect(button).toHaveAttribute("style", "float: right;");
     });
 
-    test("renders three articles correctly for regular user", async () => {
+    test("renders three helpRequests correctly for regular user", async () => {
         
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
+        axiosMock.onGet("/api/helprequest/all").reply(200, helpRequestFixtures.threeHelpRequests);
 
         // act
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <ArticlesIndexPage />
+                    <HelpRequestIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -88,7 +88,7 @@ describe("ArticlesIndexPage tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
 
         // assert that the Create button is not present when user isn't an admin
-        expect(screen.queryByText(/Create Article/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Create HelpRequest/)).not.toBeInTheDocument();
 
     });
 
@@ -97,14 +97,14 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/articles/all").timeout();
+        axiosMock.onGet("/api/helprequest/all").timeout();
         const restoreConsole = mockConsole();
 
         // act
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <ArticlesIndexPage />
+                    <HelpRequestIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -113,7 +113,7 @@ describe("ArticlesIndexPage tests", () => {
         await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1); });
 
         const errorMessage = console.error.mock.calls[0][0];
-        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/articles/all");
+        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/helprequest/all");
         restoreConsole();
 
         expect(screen.queryByTestId(`${testId}-cell-row-0-col-id`)).not.toBeInTheDocument();
@@ -123,14 +123,14 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
-        axiosMock.onDelete("/api/articles").reply(200, "Article with id 1 was deleted");
+        axiosMock.onGet("/api/helprequest/all").reply(200, helpRequestFixtures.threeHelpRequests);
+        axiosMock.onDelete("/api/helprequest").reply(200, "HelpRequest with id 1 was deleted");
 
         // act
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <ArticlesIndexPage />
+                    <HelpRequestIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -147,7 +147,7 @@ describe("ArticlesIndexPage tests", () => {
         fireEvent.click(deleteButton);
 
         // assert
-        await waitFor(() => { expect(mockToast).toBeCalledWith("Article with id 1 was deleted") });
+        await waitFor(() => { expect(mockToast).toBeCalledWith("HelpRequest with id 1 was deleted") });
 
     });
 

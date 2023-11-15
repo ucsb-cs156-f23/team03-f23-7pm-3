@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
+import HelpRequestCreatePage from "main/pages/HelpRequest/HelpRequestCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -28,7 +28,7 @@ jest.mock('react-router-dom', () => {
     };
 });
 
-describe("ArticlesCreatePage tests", () => {
+describe("HelpRequestCreatePage tests", () => {
 
     const axiosMock =new AxiosMockAdapter(axios);
 
@@ -44,7 +44,7 @@ describe("ArticlesCreatePage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <ArticlesCreatePage />
+                    <HelpRequestCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -53,41 +53,44 @@ describe("ArticlesCreatePage tests", () => {
     test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
 
         const queryClient = new QueryClient();
-        const article = {
+        const helpRequest = {
             id: 17,
-            title: "UCSB Home Page",
-            url: "https://www.ucsb.edu/",
-            explanation: "School page with important information.",
-            email: "cgaucho@ucsb.edu",
-            dateAdded: "2022-02-02T00:00"
+            requestEmail: "cgaucho@ucsb.edu",
+            teamId: "f23-5pm-1",
+            tableOrBreakoutRoom: "11",
+            requestTime: "2022-02-02T00:00",
+            explanation: "Need help with dokku",
+            solved: false
         };
 
-        axiosMock.onPost("/api/articles/post").reply( 202, article );
+        axiosMock.onPost("/api/helprequest/post").reply( 202, helpRequest );
 
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <ArticlesCreatePage />
+                    <HelpRequestCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
 
         await waitFor(() => {
-            expect(screen.getByTestId("ArticlesForm-title")).toBeInTheDocument();
+            expect(screen.getByTestId("HelpRequestForm-requestEmail")).toBeInTheDocument();
         });
 
-        const titleField = screen.getByTestId("ArticlesForm-title");
-        const urlField = screen.getByTestId("ArticlesForm-url");
-        const explanationField = screen.getByTestId("ArticlesForm-explanation");
-        const emailField = screen.getByTestId("ArticlesForm-email");
-        const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
-        const submitButton = screen.getByTestId("ArticlesForm-submit");
+        const requestEmailField = screen.getByTestId("HelpRequestForm-requestEmail");
+        const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+        const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
+        const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
+        const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+        const solvedField = screen.getByTestId("HelpRequestForm-solved");
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-        fireEvent.change(titleField, { target: { value: 'UCSB Home Page' } });
-        fireEvent.change(urlField, { target: { value: 'https://www.ucsb.edu/' } });
-        fireEvent.change(explanationField, { target: { value: 'School page with important information.' } });
-        fireEvent.change(emailField, { target: { value: 'cgaucho@ucsb.edu' } });
-        fireEvent.change(dateAddedField, { target: { value: '2022-02-02T00:00' } });
+        fireEvent.change(requestEmailField, { target: { value: 'cgaucho@ucsb.edu' } });
+        fireEvent.change(teamIdField, { target: { value: 'f23-5pm-1' } });
+        fireEvent.change(tableOrBreakoutRoomField, { target: { value: '11' } });
+        fireEvent.change(requestTimeField, { target: { value: '2022-02-02T00:00' } });
+        fireEvent.change(explanationField, { target: { value: 'Need help with dokku' } });
+        fireEvent.change(solvedField, { target: { value: false } });
 
         expect(submitButton).toBeInTheDocument();
 
@@ -97,14 +100,17 @@ describe("ArticlesCreatePage tests", () => {
 
         expect(axiosMock.history.post[0].params).toEqual(
             {
-            "dateAdded": "2022-02-02T00:00",
-            "email": "cgaucho@ucsb.edu",
-            "explanation": "School page with important information.",
-            "url": "https://www.ucsb.edu/",
-            "title": "UCSB Home Page"
+            "solved": "false",
+            "explanation": "Need help with dokku",
+            "requestTime": "2022-02-02T00:00",
+            "tableOrBreakoutRoom": "11",
+            "teamId": "f23-5pm-1",
+            "requestEmail": "cgaucho@ucsb.edu"           
         });
 
-        expect(mockToast).toBeCalledWith("New article Created - id: 17 title: UCSB Home Page");
-        expect(mockNavigate).toBeCalledWith({ "to": "/articles" });
+        expect(mockToast).toBeCalledWith("New helpRequest Created - id: 17 requester's email: cgaucho@ucsb.edu");
+        expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
     });
+
+
 });

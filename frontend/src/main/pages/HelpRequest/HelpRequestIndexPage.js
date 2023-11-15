@@ -2,11 +2,11 @@ import React from 'react'
 import { useBackend } from 'main/utils/useBackend';
 
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import ArticlesTable from 'main/components/Articles/ArticlesTable';
+import HelpRequestTable from 'main/components/HelpRequest/HelpRequestTable';
 import { Button } from 'react-bootstrap';
 import { useCurrentUser , hasRole} from 'main/utils/currentUser';
 
-export default function ArticlesIndexPage() {
+export default function HelpRequestIndexPage() {
 
   const currentUser = useCurrentUser();
 
@@ -15,20 +15,20 @@ export default function ArticlesIndexPage() {
         return (
             <Button
                 variant="primary"
-                href="/articles/create"
+                href="/helprequest/create"
                 style={{ float: "right" }}
             >
-                Create Article 
+                Create HelpRequest 
             </Button>
         )
     } 
   }
   
-  const { data: articles, error: _error, status: _status } =
+  const { data: helpRequests, error: _error, status: _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/api/articles/all"],
-      { method: "GET", url: "/api/articles/all" },
+      ["/api/helprequest/all"],
+      { method: "GET", url: "/api/helprequest/all" },
       []
     );
 
@@ -36,8 +36,8 @@ export default function ArticlesIndexPage() {
     <BasicLayout>
       <div className="pt-2">
         {createButton()}
-        <h1>Articles</h1>
-        <ArticlesTable articles={articles} currentUser={currentUser} />
+        <h1>HelpRequest</h1>
+        <HelpRequestTable helpRequests={helpRequests} currentUser={currentUser} />
       </div>
     </BasicLayout>
   )
