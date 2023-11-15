@@ -142,6 +142,9 @@ function App() {
             <>
               <Route exact path="/recommendationrequest/edit/:id" element={<RecommendationRequestEditPage />} />
               <Route exact path="/recommendationrequest/create" element={<RecommendationRequestCreatePage />} />
+              <Route exact path="/RecommendationRequest/edit/:id" element={<RecommendationRequestEditPage />} />
+              <Route exact path="/RecommendationRequest/create" element={<RecommendationRequestCreatePage />} />
+
               <Route exact path="/helprequest/edit/:id" element={<HelpRequestEditPage />} />
               <Route exact path="/helprequest/create" element={<HelpRequestCreatePage />} />
               <Route exact path="/articles/edit/:id" element={<ArticlesEditPage />} />
