@@ -76,21 +76,21 @@ describe("RecommendationRequestEditPage tests", () => {
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
             axiosMock.onGet("/api/recommendationrequest", { params: { id: 17 } }).reply(200, {
                 id: 17,
-                requesterEmail: 'cgaucho@ucsb.edu',
-                professorEmail: 'pconrad@ucsb.edu',
-                explanation: 'BS/MS program',
-                dateRequested: '2022-12-25T08:00',
-                dateNeeded: '2022-5-25T08:00',
-                done: 'false'
+                requesterEmail: "cgaucho@ucsb.edu",
+                professorEmail: "pconrad@ucsb.edu",
+                explanation: "BS/MS program",
+                dateRequested: "2022-12-25T00:00",
+                dateNeeded: "2022-5-25T00:00",
+                done: "false"
             });
             axiosMock.onPut('/api/recommendationrequest').reply(200, {
                 id: "17",
-                requesterEmail: 'adyah@ucsb.edu',
-                professorEmail: 'rastogi@ucsb.edu',
-                explanation: 'Other MS program',
-                dateRequested: '2022-1-25T08:00',
-                dateNeeded: '2022-2-25T08:00',
-                done: 'false'
+                requesterEmail: "cgaucho@ucsb.edu",
+                professorEmail: "pconrad@ucsb.edu",
+                explanation: "BS/MS program",
+                dateRequested: "2022-12-25T00:00",
+                dateNeeded: "2022-5-25T00:00",
+                done: "false"
             });
         });
 
@@ -130,8 +130,8 @@ describe("RecommendationRequestEditPage tests", () => {
             expect(requesterEmailField).toHaveValue("cgaucho@ucsb.edu");
             expect(professorEmailField).toHaveValue("pconrad@ucsb.edu");
             expect(explanationField).toHaveValue("BS/MS program");
-            expect(dateRequestedField).toHaveValue("2022-12-25T08:00");
-            expect(dateNeededField).toHaveValue("2022-5-25T08:00");
+            expect(dateRequestedField).toHaveValue("2022-12-25T00:00");
+            expect(dateNeededField).toHaveValue("2022-5-25T00:00");
             expect(doneField).toHaveValue("false");
             expect(submitButton).toBeInTheDocument();
         });
@@ -161,19 +161,18 @@ describe("RecommendationRequestEditPage tests", () => {
             expect(requesterEmailField).toHaveValue("cgaucho@ucsb.edu");
             expect(professorEmailField).toHaveValue("pconrad@ucsb.edu");
             expect(explanationField).toHaveValue("BS/MS program");
-            expect(dateRequestedField).toHaveValue("2022-12-25T08:00");
-            expect(dateNeededField).toHaveValue("2022-5-25T08:00");
+            expect(dateRequestedField).toHaveValue("2022-12-25T00:00");
+            expect(dateNeededField).toHaveValue("2022-5-25T00:00");
             expect(doneField).toHaveValue("false");
 
             expect(submitButton).toBeInTheDocument();
 
-            fireEvent.change(requesterEmailField, { target: { value: "adyah@ucsb.edu" } })
-            fireEvent.change(professorEmailField, { target: { value: "rastogi@ucsb.edu" } })
-            fireEvent.change(explanationField, { target: { value: "Other MS program" } })
-            fireEvent.change(dateRequestedField, { target: { value: "2022-1-25T08:00" } })
-            fireEvent.change(dateNeededField, { target: { value: "2022-2-25T08:00" } })
-            fireEvent.change(doneField, { target: { value: "true" } })
-
+            fireEvent.change(requesterEmailField, { target: { value: 'adyah@ucsb.edu' } })
+            fireEvent.change(professorEmailField, { target: { value: 'rastogi@ucsb.edu' } })
+            fireEvent.change(explanationField, { target: { value: 'Other MS program' } })
+            fireEvent.change(dateRequestedField, { target: { value: '2022-1-25T00:00' } })
+            fireEvent.change(dateNeededField, { target: { value: '2022-2-25T00:00' } })
+            fireEvent.change(doneField, { target: { value: true} })
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
@@ -186,8 +185,8 @@ describe("RecommendationRequestEditPage tests", () => {
                 requesterEmail: "adyah@ucsb.edu",
                 professorEmail: "rastogi@ucsb.edu",
                 explanation: "Other MS program",
-                dateRequested: "2022-1-25T08:00",
-                dateNeeded: "2022-2-25T08:00",
+                dateRequested: "2022-1-25T00:00",
+                dateNeeded: "2022-2-25T00:00",
                 done: "true"
             })); // posted object
 
