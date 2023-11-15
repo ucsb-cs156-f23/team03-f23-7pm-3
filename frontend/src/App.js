@@ -18,6 +18,9 @@ import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 import RecommendationRequestIndexPage from "main/pages/RecommendationRequest/RecommendationRequestIndexPage";
 import RecommendationRequestCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
 import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
+import HelpRequestCreatePage from "main/pages/HelpRequest/HelpRequestCreatePage";
+import HelpRequestEditPage from "main/pages/HelpRequest/HelpRequestEditPage";
 
 import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
 import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
@@ -110,6 +113,13 @@ function App() {
             </>
           )
         }
+         {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
+          </>
+          )
+        }
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
@@ -132,8 +142,8 @@ function App() {
             <>
               <Route exact path="/recommendationrequest/edit/:id" element={<RecommendationRequestEditPage />} />
               <Route exact path="/recommendationrequest/create" element={<RecommendationRequestCreatePage />} />
-              <Route exact path="/RecommendationRequest/edit/:id" element={<RecommendationRequestEditPage />} />
-              <Route exact path="/RecommendationRequest/create" element={<RecommendationRequestCreatePage />} />
+              <Route exact path="/helprequest/edit/:id" element={<HelpRequestEditPage />} />
+              <Route exact path="/helprequest/create" element={<HelpRequestCreatePage />} />
               <Route exact path="/articles/edit/:id" element={<ArticlesEditPage />} />
               <Route exact path="/articles/create" element={<ArticlesCreatePage />} />
               <Route exact path="/menuitemreview/edit/:id" element={<MenuItemReviewEditPage />} />
